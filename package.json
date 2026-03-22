@@ -30,7 +30,7 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
     "dev:harmony-hybrid": "npm run build:harmony-hybrid -- --watch",
-    "setup:tw":"weapp-tw patch",
+    "setup:tw": "weapp-tw patch",
     "postinstall": "pnpm run setup:tw"
   },
   "browserslist": [
@@ -64,6 +64,8 @@
     "@babel/preset-react": "^7.24.1",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@egoist/tailwindcss-icons": "^1.9.2",
+    "@iconify/json": "^2.2.453",
     "@tarojs/cli": "4.1.11",
     "@tarojs/plugin-generator": "4.1.11",
     "@tarojs/vite-runner": "4.1.11",

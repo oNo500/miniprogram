@@ -1,12 +1,49 @@
+const fs = require('fs')
+const path = require('path')
+const { getIconCollections, iconsPlugin } = require('@egoist/tailwindcss-icons')
+
+/**
+ * Load custom SVG icons from a directory as an Iconify collection.
+ * Usage: i-<collectionName>-<filename-without-ext>
+ *
+ * @param {string} dir - path to SVG directory
+ * @param {string} collectionName - prefix used in class names
+ */
+function loadLocalIcons(dir, collectionName) {
+  const icons = {}
+  let files = []
+  try {
+    files = fs.readdirSync(dir)
+  } catch {
+    return {}
+  }
+  for (const file of files) {
+    if (!file.endsWith('.svg')) continue
+    const filePath = path.join(dir, file)
+    if (!fs.lstatSync(filePath).isFile()) continue
+    const svg = fs.readFileSync(filePath, 'utf-8')
+    const body = svg.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '').trim()
+    const name = path.basename(file, '.svg')
+    icons[name] = { body, width: 24, height: 24 }
+  }
+  return { [collectionName]: { icons } }
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // 这里给出了一份 uni-app /taro 通用示例，具体要根据你自己项目的目录结构进行配置
-  // 不在 content 包括的文件内，你编写的 class，是不会生成对应的css工具类的
   content: ['./public/index.html', './src/**/*.{html,js,ts,jsx,tsx,vue}'],
-  // 其他配置项
-  // ...
   corePlugins: {
-    // 小程序不需要 preflight，因为这主要是给 h5 的，如果你要同时开发小程序和 h5 端，你应该使用环境变量来控制它
-    preflight: false
-  }
+    // mini-program doesn't need preflight (h5 base styles)
+    preflight: false,
+  },
+  plugins: [
+    iconsPlugin({
+      collections: {
+        // Custom local SVG icons — src/assets/icons/<name>.svg → i-custom-<name>
+        ...loadLocalIcons(path.resolve(__dirname, './src/assets/icons'), 'custom'),
+        // Iconify icon sets
+        ...getIconCollections(['lucide', 'simple-icons']),
+      },
+    }),
+  ],
 }

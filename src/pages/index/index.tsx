@@ -10,6 +10,12 @@ export default function Index () {
   return (
     <View className='index'>
       <Text>Hello world!</Text>
+      {/* iconify collection: lucide */}
+      <Text className='i-lucide-binary'></Text>
+      {/* custom local SVGs: src/assets/icons/*.svg → i-custom-<name> */}
+      <Text className='i-custom-github'></Text>
+      <Text className='i-custom-wechat'></Text>
+      <Text className='i-custom-alipay'></Text>
     </View>
   )
 }
