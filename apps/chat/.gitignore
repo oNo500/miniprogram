@@ -1,14 +1,5 @@
-dist/
-deploy_versions/
-.temp/
-.rn_temp/
-node_modules/
-.DS_Store
-.swc
-*.local
-project.private.config.json
-
-
+# dependencies
+node_modules
 .pnp
 .pnp.js
 
@@ -21,6 +12,7 @@ out/
 build
 
 # misc
+.DS_Store
 *.pem
 
 # debug
@@ -29,6 +21,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # turbo
 .turbo
