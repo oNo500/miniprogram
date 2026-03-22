@@ -1,6 +1,6 @@
 {
   "description": "项目配置文件",
-  "miniprogramRoot": "../../main/dist/packages/chat/",
+  "miniprogramRoot": "dist/",
   "compileType": "miniprogram",
   "setting": {
     "babelSetting": {
@@ -16,7 +16,7 @@
     "packNpmRelationList": [
       {
         "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "../../main/dist/packages/chat"
+        "miniprogramNpmDistDir": "./dist"
       }
     ],
     "ignoreUploadUnusedFiles": true,
@@ -31,7 +31,7 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {},
-  "srcMiniprogramRoot": "../../main/dist/packages/chat/",
+  "srcMiniprogramRoot": "dist/",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
