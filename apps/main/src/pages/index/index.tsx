@@ -31,6 +31,13 @@ export default function Index() {
         clickable
         onClick={() => Taro.navigateTo({ url: '/pages/tdesign-chat/index' })}
       />
+      <Cell
+        title='Chat 独立分包'
+        description='weapp-vite 独立分包示例'
+        extra={<Arrow />}
+        clickable
+        onClick={() => Taro.navigateTo({ url: '/packages/chat/pages/index/index' })}
+      />
     </View>
   )
 }

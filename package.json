@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm run dev:main & pnpm run dev:chat",
+    "dev:main": "pnpm --filter main dev:weapp",
+    "dev:chat": "pnpm --filter chat dev",
+    "build": "pnpm --filter main build:weapp && pnpm --filter chat build",
+    "build:main": "pnpm --filter main build:weapp",
+    "build:chat": "pnpm --filter chat build"
   },
   "keywords": [],
   "author": "",
