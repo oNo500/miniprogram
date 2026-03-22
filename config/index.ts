@@ -1,10 +1,13 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import type { Plugin } from 'vite'
+import tailwindcss from 'tailwindcss'
+import { UnifiedViteWeappTailwindcssPlugin as uvtw } from 'weapp-tailwindcss/vite'
 
 import devConfig from './dev'
 import prodConfig from './prod'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig<'vite'>(async (merge, { command, mode }) => {
+export default defineConfig<'vite'>(async (merge) => {
   const baseConfig: UserConfigExport<'vite'> = {
     projectName: 'miniprogram-boilerplate',
     date: '2026-3-22',
@@ -29,7 +32,28 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
       }
     },
     framework: 'react',
-    compiler: 'vite',
+    compiler: {
+      type: 'vite',
+      vitePlugins: [
+        {
+          // load postcss plugins via vite plugin (postcss.config.js is broken in taro@4 vite)
+          name: 'postcss-config-loader-plugin',
+          config(config) {
+            if (typeof config.css?.postcss === 'object') {
+              config.css?.postcss.plugins?.unshift(tailwindcss())
+            }
+          },
+        },
+        uvtw({
+          rem2rpx: true,
+          disabled:
+            process.env.TARO_ENV === 'h5' ||
+            process.env.TARO_ENV === 'harmony' ||
+            process.env.TARO_ENV === 'rn',
+          injectAdditionalCssVarScope: true,
+        }),
+      ] as Plugin[],
+    },
     mini: {
       postcss: {
         pxtransform: {
