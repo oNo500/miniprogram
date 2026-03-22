@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "t-chat": "tdesign-miniprogram/chat-list/chat-list",
+    "t-chat-message": "tdesign-miniprogram/chat-message/chat-message",
+    "t-chat-sender": "tdesign-miniprogram/chat-sender/chat-sender",
+    "t-chat-actionbar": "tdesign-miniprogram/chat-actionbar/chat-actionbar",
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  },
+  "navigationBarTitleText": "AI 助手"
+}

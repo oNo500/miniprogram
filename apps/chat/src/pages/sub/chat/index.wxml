@@ -1,0 +1,50 @@
+<page>
+  <view class="chat-box" style="height: {{contentHeight}};">
+    <t-chat id="chatList" bind:scroll="onScroll">
+      <block wx:for="{{chatList}}" wx:key="chatId">
+        <t-chat-message
+          chat-id="{{item.chatId}}"
+          avatar="{{item.avatar || ''}}"
+          name="{{item.name || ''}}"
+          datetime="{{item.datetime || ''}}"
+          content="{{item.content}}"
+          role="{{item.role}}"
+          placement="{{item.role === 'user' ? 'right' : 'left'}}"
+          status="{{item.status || ''}}"
+          bind:message-longpress="showPopover"
+        >
+          <t-chat-actionbar
+            wx:if="{{index !== 0 && item.status === 'complete' && item.role === 'assistant'}}"
+            id="{{'actionbar-' + item.chatId}}"
+            chat-id="{{item.chatId}}"
+            comment="{{item.comment}}"
+            slot="actionbar"
+            placement="end"
+            bind:actions="handleAction"
+          />
+        </t-chat-message>
+      </block>
+
+      <view slot="footer">
+        <t-chat-sender
+          value="{{inputValue}}"
+          loading="{{loading}}"
+          auto-rise-with-keyboard="{{true}}"
+          render-presets="{{renderPresets}}"
+          bind:send="onSend"
+          bind:stop="onStop"
+        />
+      </view>
+    </t-chat>
+
+    <!-- Long-press popover actionbar -->
+    <t-chat-actionbar
+      class="popover-actionbar"
+      placement="longpress"
+      bind:actions="handlePopoverAction"
+      long-press-position="{{longPressPosition}}"
+    />
+  </view>
+
+  <t-toast id="t-toast" />
+</page>

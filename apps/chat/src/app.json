@@ -4,6 +4,13 @@
     "pages/index/index",
     "pages/layouts/index"
   ],
+  "subPackages": [
+    {
+      "root": "pages/sub",
+      "pages": ["chat/index"],
+      "independent": true
+    }
+  ],
   "window": {},
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",

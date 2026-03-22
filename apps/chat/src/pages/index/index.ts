@@ -89,6 +89,11 @@ Page({
       url: '/pages/layouts/index',
     })
   },
+  goToChat() {
+    wx.navigateTo({
+      url: '/pages/sub/chat/index',
+    })
+  },
   handleAction() {
     ActionSheet.show({
       theme: ActionSheetTheme.Grid,
