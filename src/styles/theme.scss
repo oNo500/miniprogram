@@ -1,0 +1,13 @@
+// NutUI CSS Variables Theme
+// Reference: https://nutui.jd.com/taro/react/2x/#/zh-CN/component/configprovider
+
+:root,
+page {
+  // Primary color — change here to retheme all NutUI components globally
+  // Default JD red: #fa2c19
+  // Blue example:   #1677ff
+  --nutui-color-primary: #1677ff;
+  --nutui-color-primary-stop-1: #1677ff;
+  --nutui-color-primary-stop-2: #4096ff;
+  --nutui-button-border-radius: 10px;
+}

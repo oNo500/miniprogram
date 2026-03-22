@@ -1,17 +1,17 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
-import type { Plugin } from 'vite'
-import tailwindcss from 'tailwindcss'
-import { UnifiedViteWeappTailwindcssPlugin as uvtw } from 'weapp-tailwindcss/vite'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+
+import {UnifiedWebpackPluginV5} from 'weapp-tailwindcss/webpack'
 
 import devConfig from './dev'
 import prodConfig from './prod'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig<'vite'>(async (merge) => {
-  const baseConfig: UserConfigExport<'vite'> = {
+export default defineConfig<'webpack5'>(async (merge) => {
+  const baseConfig: UserConfigExport<'webpack5'> = {
     projectName: 'miniprogram-boilerplate',
     date: '2026-3-22',
-    designWidth: 750,
+    designWidth: 375,
     deviceRatio: {
       640: 2.34 / 2,
       750: 1,
@@ -20,9 +20,7 @@ export default defineConfig<'vite'>(async (merge) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [
-      "@tarojs/plugin-generator"
-    ],
+    plugins: ['@tarojs/plugin-html'],
     defineConstants: {
     },
     copy: {
@@ -33,33 +31,21 @@ export default defineConfig<'vite'>(async (merge) => {
     },
     framework: 'react',
     compiler: {
-      type: 'vite',
-      vitePlugins: [
-        {
-          // load postcss plugins via vite plugin (postcss.config.js is broken in taro@4 vite)
-          name: 'postcss-config-loader-plugin',
-          config(config) {
-            if (typeof config.css?.postcss === 'object') {
-              config.css?.postcss.plugins?.unshift(tailwindcss())
-            }
-          },
-        },
-        uvtw({
-          rem2rpx: true,
-          disabled:
-            process.env.TARO_ENV === 'h5' ||
-            process.env.TARO_ENV === 'harmony' ||
-            process.env.TARO_ENV === 'rn',
-          injectAdditionalCssVarScope: true,
-        }),
-      ] as Plugin[],
+
+      type: 'webpack5',
+      prebundle: {
+        enable: false
+      }
+    },
+    cache: {
+      enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
       postcss: {
         pxtransform: {
           enable: true,
           config: {
-
+            selectorBlackList: ['nut-']
           }
         },
         cssModules: {
@@ -70,11 +56,28 @@ export default defineConfig<'vite'>(async (merge) => {
           }
         }
       },
+      webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+        chain.merge({
+        plugin: {
+          install: {
+            plugin: UnifiedWebpackPluginV5,
+            args: [{
+              // 这里可以传参数
+              rem2rpx: true,
+            }]
+          }
+        }
+      })
+      }
     },
     h5: {
       publicPath: '/',
       staticDirectory: 'static',
-
+      output: {
+        filename: 'js/[name].[hash:8].js',
+        chunkFilename: 'js/[name].[chunkhash:8].js'
+      },
       miniCssExtractPluginOption: {
         ignoreOrder: true,
         filename: 'css/[name].[hash].css',
@@ -93,6 +96,9 @@ export default defineConfig<'vite'>(async (merge) => {
           }
         }
       },
+      webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      }
     },
     rn: {
       appName: 'taroDemo',
@@ -103,8 +109,6 @@ export default defineConfig<'vite'>(async (merge) => {
       }
     }
   }
-
-
   if (process.env.NODE_ENV === 'development') {
     // 本地开发构建配置（不混淆压缩）
     return merge({}, baseConfig, devConfig)
