@@ -25,6 +25,10 @@ export default defineConfig<'webpack5'>(async (merge) => {
     },
     copy: {
       patterns: [
+        {
+          from: 'node_modules/tdesign-miniprogram/miniprogram_dist/',
+          to: 'dist/tdesign-miniprogram/',
+        },
       ],
       options: {
       }
