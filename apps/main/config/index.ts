@@ -20,7 +20,7 @@ export default defineConfig<"webpack5">(async (merge) => {
     },
     sourceRoot: "src",
     outputRoot: "dist",
-    plugins: ["@tarojs/plugin-html", require.resolve("../plugin-inject-subpackage")],
+    plugins: ["@tarojs/plugin-html", require.resolve("taro-plugin-inject-subpackage")],
     defineConstants: {},
     copy: {
       patterns: [
