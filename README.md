@@ -2,6 +2,12 @@
 
 WeChat miniprogram monorepo — Taro (React) main app + native weapp-vite chat subpackage, pnpm workspace.
 
+## Philosophy
+
+`main` uses Taro + NutUI as the foundation, preserving cross-platform capability for future targets (Alipay, ByteDance, H5, etc.).
+
+The AI chat subpackage (`chat`) breaks out of Taro's compilation boundary intentionally — native weapp-vite + TDesign WeChat MiniProgram gives full access to platform-level APIs and components that Taro's abstraction layer cannot expose. This keeps the main app portable while letting the subpackage go native where it matters.
+
 ## Workspace
 
 | Package | Path | Description |
