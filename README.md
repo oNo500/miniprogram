@@ -18,6 +18,9 @@ pnpm build   # plugin → chat → main
 pnpm dev     # chat + main watch in parallel
 ```
 
+> [!NOTE]
+> `dev` starts `chat` and `main` in parallel. On first run, `chat` may not be compiled yet when `main`'s watcher fires — run `pnpm build:chat` once beforehand if you see missing artifacts.
+
 ## Common Commands
 
 ```bash
@@ -32,7 +35,8 @@ pnpm dev                # watch mode (chat + main)
 
 ### Full Build
 
-The full build must run in dependency order:
+> [!IMPORTANT]
+> The three packages have a hard dependency on build order. Running `pnpm build:main` before the other two will fail or produce stale output.
 
 ```bash
 pnpm build:plugin   # 1. compile taro-plugin-inject-subpackage (tsdown → dist)
