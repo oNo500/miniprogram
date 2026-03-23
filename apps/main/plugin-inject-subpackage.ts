@@ -6,8 +6,8 @@
 import fs from 'fs'
 import path from 'path'
 
-const CHAT_DIST = path.resolve(__dirname, '../../chat/dist')
-const MAIN_DIST = path.resolve(__dirname, '../dist')
+const CHAT_DIST = path.resolve(process.cwd(), '../chat/dist')
+const MAIN_DIST = path.resolve(process.cwd(), 'dist')
 
 // Directories to copy from apps/chat/dist → apps/main/dist (relative to CHAT_DIST)
 const COPY_DIRS = [
@@ -45,7 +45,10 @@ function syncChatArtifacts() {
 class CopyChatArtifactsPlugin {
   apply(compiler: any) {
     compiler.hooks.beforeRun.tap('CopyChatArtifactsPlugin', syncChatArtifacts)
-    compiler.hooks.watchRun.tap('CopyChatArtifactsPlugin', syncChatArtifacts)
+    compiler.hooks.watchRun.tapAsync('CopyChatArtifactsPlugin', (_: any, callback: () => void) => {
+      syncChatArtifacts()
+      callback()
+    })
   }
 }
 
