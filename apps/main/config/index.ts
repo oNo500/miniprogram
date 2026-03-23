@@ -28,14 +28,6 @@ export default defineConfig<"webpack5">(async (merge) => {
           from: "node_modules/tdesign-miniprogram/miniprogram_dist/",
           to: "dist/tdesign-miniprogram/",
         },
-        {
-          from: "../chat/dist/miniprogram_npm/tdesign-miniprogram",
-          to: "dist/miniprogram_npm/tdesign-miniprogram",
-        },
-        {
-          from: "../chat/dist/pages/sub/chat",
-          to: "dist/pages/sub/chat",
-        },
       ],
       options: {},
     },
