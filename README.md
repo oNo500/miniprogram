@@ -9,7 +9,7 @@
 - **官方组件库** —— 分包使用 TDesign 微信小程序版，充分释放原生能力
 - **Iconify 图标** —— 主包与分包均通过 `@egoist/tailwindcss-icons` 使用全量 Iconify 图标集
 - **Tailwind CSS** —— weapp-tailwindcss 适配器覆盖整个 monorepo
-- **pnpm workspace** —— 统一工具链，通过 `taro-plugin-inject-subpackage` 保证构建顺序
+- **pnpm workspace** —— 统一工具链，通过 `taro-plugin-inject-subpackage` 作为补充将分包添加到主包，保证构建顺序
 
 ## 包结构
 
