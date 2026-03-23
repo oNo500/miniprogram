@@ -1,64 +1,64 @@
-# Miniprogram Boilerplate
+# 小程序脚手架
 
-WeChat miniprogram monorepo — Taro (React) main app + native weapp-vite chat subpackage, pnpm workspace.
+微信小程序 monorepo —— Taro (React) 主包 + 原生 weapp-vite AI 对话分包，pnpm workspace 管理。
 
-## Features
+## 特性
 
-- **Cross-platform main app** — Taro + NutUI, targets WeChat, Alipay, ByteDance, H5
-- **Native AI subpackage** — weapp-vite bypasses Taro's compilation boundary for full platform API access
-- **Official component library** — TDesign WeChat MiniProgram in `chat` for native-grade UI
-- **Iconify icons** — `@egoist/tailwindcss-icons` available in both `main` and `chat`
-- **Tailwind CSS** — weapp-tailwindcss adapter across the entire monorepo
-- **pnpm workspace** — shared tooling, dependency-ordered builds via `taro-plugin-inject-subpackage`
+- **跨端主包** —— Taro + NutUI，支持微信、支付宝、字节、H5 等多端
+- **原生 AI 分包** —— weapp-vite 绕过 Taro 编译边界，直接访问平台级 API
+- **官方组件库** —— 分包使用 TDesign 微信小程序版，充分释放原生能力
+- **Iconify 图标** —— 主包与分包均通过 `@egoist/tailwindcss-icons` 使用全量 Iconify 图标集
+- **Tailwind CSS** —— weapp-tailwindcss 适配器覆盖整个 monorepo
+- **pnpm workspace** —— 统一工具链，通过 `taro-plugin-inject-subpackage` 保证构建顺序
 
-## Workspace
+## 包结构
 
-- `apps/main` — main app
-- `apps/chat` — AI chat subpackage
-- `packages/taro-plugin-inject-subpackage` — build plugin that wires the two apps together
+- `apps/main` —— 主包
+- `apps/chat` —— AI 对话分包
+- `packages/taro-plugin-inject-subpackage` —— 将两个应用串联的构建插件
 
-## Prerequisites
+## 环境要求
 
 - Node.js >= 18
 - pnpm >= 10
-- [WeChat DevTools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+- [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 
-## Quick Start
+## 快速开始
 
 ```bash
 pnpm install
-pnpm build   # plugin → chat → main
-pnpm dev     # chat + main watch in parallel
+pnpm build   # 依次构建 plugin → chat → main
+pnpm dev     # chat 与 main 并行监听
 ```
 
 > [!NOTE]
-> `dev` starts `chat` and `main` in parallel. On first run, `chat` may not be compiled yet when `main`'s watcher fires — run `pnpm build:chat` once beforehand if you see missing artifacts.
+> `dev` 并行启动 `chat` 和 `main`。首次运行时 `chat` 可能尚未编译完成，建议先执行一次 `pnpm build:chat`。
 
-## Common Commands
+## 常用命令
 
 ```bash
-pnpm build              # full build in dependency order
-pnpm build:plugin       # build taro-plugin-inject-subpackage only
-pnpm build:chat         # build chat subpackage only
-pnpm build:main         # build main app only
-pnpm dev                # watch mode (chat + main)
+pnpm build              # 按依赖顺序完整构建
+pnpm build:plugin       # 仅构建 taro-plugin-inject-subpackage
+pnpm build:chat         # 仅构建 chat 分包
+pnpm build:main         # 仅构建主包
+pnpm dev                # 监听模式（chat + main）
 ```
 
-## Workflows
+## 工作流
 
-### Full Build
+### 完整构建
 
 > [!IMPORTANT]
-> The three packages have a hard dependency on build order. Running `pnpm build:main` before the other two will fail or produce stale output.
+> 三个包之间存在硬性构建顺序依赖，在其他两个包构建完成前执行 `pnpm build:main` 会失败或产生过期产物。
 
 ```bash
-pnpm build:plugin   # 1. compile taro-plugin-inject-subpackage (tsdown → dist)
-pnpm build:chat     # 2. compile native chat subpackage (weapp-vite → apps/chat/dist)
-pnpm build:main     # 3. compile Taro main app — plugin copies chat artifacts into
-                    #    apps/main/dist and injects subpackage entries into app.json
+pnpm build:plugin   # 1. 编译 taro-plugin-inject-subpackage（tsdown → dist）
+pnpm build:chat     # 2. 编译原生分包（weapp-vite → apps/chat/dist）
+pnpm build:main     # 3. 编译主包——插件将 chat 产物复制到 apps/main/dist
+                    #    并向 app.json 注入分包条目
 ```
 
-Or run all at once:
+或一键执行：
 
 ```bash
 pnpm build
