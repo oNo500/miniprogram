@@ -3,18 +3,6 @@
   "type": "module",
   "version": "1.0.6",
   "private": true,
-  "description": "原生微信小程序 weapp-vite + tailwindcss + tdesign 模板",
-  "author": "ice breaker <1324318532@qq.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/weapp-vite/weapp-vite.git",
-    "directory": "templates/weapp-vite-tailwindcss-tdesign-template"
-  },
-  "bugs": {
-    "url": "https://github.com/weapp-vite/weapp-vite/issues"
-  },
-  "keywords": [],
   "scripts": {
     "dev": "weapp-vite dev",
     "dev:open": "weapp-vite dev -o",
