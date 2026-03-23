@@ -13,11 +13,9 @@ WeChat miniprogram monorepo — Taro (React) main app + native weapp-vite chat s
 
 ## Workspace
 
-| Package | Path | Description |
-|---------|------|-------------|
-| `main` | `apps/main` | Taro + React main app, weapp-tailwindcss, NutUI |
-| `chat` | `apps/chat` | Native weapp-vite chat subpackage, TDesign, Tailwind CSS |
-| `taro-plugin-inject-subpackage` | `packages/taro-plugin-inject-subpackage` | Taro plugin — injects native subpackage entries into `app.json` and copies chat build artifacts |
+- `apps/main` — main app
+- `apps/chat` — AI chat subpackage
+- `packages/taro-plugin-inject-subpackage` — build plugin that wires the two apps together
 
 ## Prerequisites
 
