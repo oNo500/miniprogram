@@ -4,12 +4,12 @@ WeChat miniprogram monorepo — Taro (React) main app + native weapp-vite chat s
 
 ## Features
 
-- Taro + NutUI main app — cross-platform (WeChat, Alipay, ByteDance, H5)
-- Native weapp-vite AI chat subpackage — bypasses Taro, full platform API access
-- TDesign WeChat MiniProgram in subpackage — official component library for native capability
-- Iconify icons in both main and chat via `@egoist/tailwindcss-icons`
-- Tailwind CSS + weapp-tailwindcss across the entire monorepo
-- pnpm workspace — shared tooling, ordered builds via `taro-plugin-inject-subpackage`
+- **Cross-platform main app** — Taro + NutUI, targets WeChat, Alipay, ByteDance, H5
+- **Native AI subpackage** — weapp-vite bypasses Taro's compilation boundary for full platform API access
+- **Official component library** — TDesign WeChat MiniProgram in `chat` for native-grade UI
+- **Iconify icons** — `@egoist/tailwindcss-icons` available in both `main` and `chat`
+- **Tailwind CSS** — weapp-tailwindcss adapter across the entire monorepo
+- **pnpm workspace** — shared tooling, dependency-ordered builds via `taro-plugin-inject-subpackage`
 
 ## Workspace
 
