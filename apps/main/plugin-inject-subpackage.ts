@@ -36,11 +36,22 @@ const NATIVE_SUBPACKAGES = [
   },
 ]
 
+function syncChatArtifacts() {
+  for (const { from, to } of COPY_DIRS) {
+    copyDir(path.join(CHAT_DIST, from), path.join(MAIN_DIST, to))
+  }
+}
+
+class CopyChatArtifactsPlugin {
+  apply(compiler: any) {
+    compiler.hooks.beforeRun.tap('CopyChatArtifactsPlugin', syncChatArtifacts)
+    compiler.hooks.watchRun.tap('CopyChatArtifactsPlugin', syncChatArtifacts)
+  }
+}
+
 export default (ctx: any) => {
-  ctx.onBuildFinish(() => {
-    for (const { from, to } of COPY_DIRS) {
-      copyDir(path.join(CHAT_DIST, from), path.join(MAIN_DIST, to))
-    }
+  ctx.modifyWebpackChain(({ chain }: { chain: any }) => {
+    chain.plugin('copy-chat-artifacts').use(CopyChatArtifactsPlugin)
   })
 
   ctx.modifyBuildAssets(({ assets }: { assets: Record<string, any> }) => {
