@@ -28,10 +28,21 @@ pnpm build:main         # build main app only
 pnpm dev                # watch mode (chat + main)
 ```
 
-## Build Order
+## Workflows
 
-The full build must run in this order:
+### Full Build
 
-1. **`build:plugin`** — compile `taro-plugin-inject-subpackage` (tsdown → dist)
-2. **`build:chat`** — compile native chat subpackage (weapp-vite → `apps/chat/dist`)
-3. **`build:main`** — compile Taro main app; the plugin copies `apps/chat/dist` into `apps/main/dist` and injects subpackage entries into `app.json`
+The full build must run in dependency order:
+
+```bash
+pnpm build:plugin   # 1. compile taro-plugin-inject-subpackage (tsdown → dist)
+pnpm build:chat     # 2. compile native chat subpackage (weapp-vite → apps/chat/dist)
+pnpm build:main     # 3. compile Taro main app — plugin copies chat artifacts into
+                    #    apps/main/dist and injects subpackage entries into app.json
+```
+
+Or run all at once:
+
+```bash
+pnpm build
+```
