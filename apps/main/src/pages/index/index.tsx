@@ -35,7 +35,7 @@ export default function Index() {
         description='weapp-vite 独立分包示例'
         extra={<Arrow />}
         clickable
-        onClick={() => Taro.navigateTo({ url: '/pages/sub/sub-chat/index' })}
+        onClick={() => Taro.navigateTo({ url: '/pages/sub/chat/index' })}
       />
     </View>
   )

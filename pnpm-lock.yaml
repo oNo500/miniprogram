@@ -43,7 +43,7 @@ importers:
         version: 4.10.3(tailwindcss@3.4.19(yaml@2.8.3))
       weapp-vite:
         specifier: ^6.11.3
-        version: 6.11.3(esbuild@0.27.4)(jiti@1.21.7)(miniprogram-api-typings@5.1.2)(rollup@3.30.0)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
+        version: 6.11.3(esbuild@0.27.4)(jiti@2.6.1)(miniprogram-api-typings@5.1.2)(rollup@3.30.0)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
 
   apps/main:
     dependencies:
@@ -110,6 +110,9 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
+      tdesign-miniprogram:
+        specifier: ^1.13.0
+        version: 1.13.0
       tinycolor2:
         specifier: ^1.6.0
         version: 1.6.0
@@ -17070,17 +17073,17 @@ snapshots:
 
   vite-plugin-performance@2.0.1: {}
 
-  vite-tsconfig-paths@6.1.1(typescript@5.9.3)(vite@8.0.0(esbuild@0.27.4)(jiti@1.21.7)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)):
+  vite-tsconfig-paths@6.1.1(typescript@5.9.3)(vite@8.0.0(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)):
     dependencies:
       debug: 4.4.3
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
-      vite: 8.0.0(esbuild@0.27.4)(jiti@1.21.7)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
+      vite: 8.0.0(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@8.0.0(esbuild@0.27.4)(jiti@1.21.7)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3):
+  vite@8.0.0(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3):
     dependencies:
       '@oxc-project/runtime': 0.115.0
       lightningcss: 1.32.0
@@ -17091,7 +17094,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.27.4
       fsevents: 2.3.3
-      jiti: 1.21.7
+      jiti: 2.6.1
       sass: 1.98.0
       stylus: 0.64.0
       terser: 5.46.1
@@ -17180,7 +17183,7 @@ snapshots:
       - supports-color
       - tailwindcss
 
-  weapp-vite@6.11.3(esbuild@0.27.4)(jiti@1.21.7)(miniprogram-api-typings@5.1.2)(rollup@3.30.0)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3):
+  weapp-vite@6.11.3(esbuild@0.27.4)(jiti@2.6.1)(miniprogram-api-typings@5.1.2)(rollup@3.30.0)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3):
     dependencies:
       '@volar/typescript': 2.4.28
       '@vue/language-core': 3.2.6
@@ -17215,9 +17218,9 @@ snapshots:
       rolldown-require: 2.0.8(rolldown@1.0.0-rc.9)(rollup@3.30.0)
       semver: 7.7.4
       typescript: 5.9.3
-      vite: 8.0.0(esbuild@0.27.4)(jiti@1.21.7)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
+      vite: 8.0.0(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
       vite-plugin-performance: 2.0.1
-      vite-tsconfig-paths: 6.1.1(typescript@5.9.3)(vite@8.0.0(esbuild@0.27.4)(jiti@1.21.7)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3))
+      vite-tsconfig-paths: 6.1.1(typescript@5.9.3)(vite@8.0.0(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3))
       vue: 3.5.30(typescript@5.9.3)
       vue-tsc: 3.2.6(typescript@5.9.3)
       weapp-ide-cli: 5.1.1
