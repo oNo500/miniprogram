@@ -1,4 +1,4 @@
-# 小程序脚手架
+# 小程序启动模版
 
 微信小程序 monorepo —— Taro (React) 主包 + 原生 weapp-vite AI 对话分包，pnpm workspace 管理。
 
