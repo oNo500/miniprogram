@@ -6,7 +6,7 @@ export default defineAppConfig({
   ],
   subPackages: [
     {
-      root: "pages/sub",
+      root: "pages/sub-one",
       pages: ["sub-chat/index"],
       independent: true,
     },
