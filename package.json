@@ -4,15 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run dev:main & pnpm run dev:chat",
+    "dev": "pnpm run dev:chat & pnpm run dev:main",
     "dev:main": "pnpm --filter main dev:weapp",
     "dev:chat": "pnpm --filter chat dev",
-    "build": "pnpm --filter main build:weapp && pnpm --filter chat build",
+    "build": "pnpm run build:plugin && pnpm run build:chat && pnpm run build:main",
+    "build:plugin": "pnpm --filter taro-plugin-inject-subpackage build",
     "build:main": "pnpm --filter main build:weapp",
     "build:chat": "pnpm --filter chat build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@10.32.1"
 }
